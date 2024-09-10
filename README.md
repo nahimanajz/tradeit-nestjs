@@ -2,7 +2,7 @@
 **Users**
 - id, email, password, type<Enum<admin, buyer, seller>>, verified<default false>
 **Products**
-- id, name, price, product, userId, isFeatured:false
+- id, name, price, userId, isFeatured:false
 **Orders**
 - id, productId, userId,totalOrderPrice, status
 **Categories**
