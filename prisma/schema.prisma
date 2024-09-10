@@ -53,18 +53,17 @@ enum Status {
 }
 
 model OrdersOnProducts {
-    id Int @id @default(autoincrement())
 
-    products  Products @relation(fields: [productId], references: [id])
     productId Int
+    orderId Int
+    products  Products @relation(fields: [productId], references: [id])
 
     orders  Orders @relation(fields: [orderId], references: [id])
-    orderId Int
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
-    @@index([productId, orderId])
+    @@id([productId, orderId])
 }
 
 model Reviews {
