@@ -8,6 +8,7 @@ import { ProductsModule } from './products/products.module';
 import { OrdersOnProdutsModule } from './orders-on-produts/orders-on-produts.module';
 import { ReviewsModule } from './reviews/reviews.module';
 import { OrdersModule } from './orders/orders.module';
+import { AuthModule } from './auth/auth.module';
 
 import dbConfig from 'config/dbConfig';
 
@@ -22,7 +23,8 @@ import dbConfig from 'config/dbConfig';
     ProductsModule,
     ReviewsModule,
     OrdersModule,
-    OrdersOnProdutsModule
+    OrdersOnProdutsModule,
+    AuthModule
     ],
   controllers: [AppController],
   providers: [AppService],
