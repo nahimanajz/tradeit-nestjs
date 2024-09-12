@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
+import { FindUserDto } from 'src/auth/dto/auth.dto';
 import { DatabaseService } from 'src/database/database.service';
 
 @Injectable()
@@ -13,21 +14,13 @@ export class UserService {
     return await this.databaseService.user.findMany({});
   }
 
-  async findOne(id?: number, email?:string) {
-    return await this.databaseService.user.findFirst({
-      where: {
-        OR:[
-          {
-            id:id as number  
-          },
-          {
-            email:email as string
-          }
-        ]
-      },
+  async findOne(user: FindUserDto) {
+    const condition = user.id !== 0 ? { id: user.id } : { email: user.email };
+    return await this.databaseService.user.findUnique({
+      where: condition
     });
   }
-  
+
   async update(id: number, updateUserDto: Prisma.UserUpdateInput) {
     return await this.databaseService.user.update({
       where: {
@@ -38,6 +31,6 @@ export class UserService {
   }
 
   remove(id: number) {
-    return this.databaseService.user.delete({where:{id}})
+    return this.databaseService.user.delete({ where: { id } });
   }
 }

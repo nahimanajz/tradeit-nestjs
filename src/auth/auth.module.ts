@@ -23,11 +23,13 @@ import { RoleGuard } from './guards/roles.guard';
     {
       provide: APP_GUARD,
       useClass: AuthGuard,
-    },
-    {
-      provide: APP_GUARD,
-      useClass: RoleGuard,
-    },
+      },
+      
+    // {
+    //   provide: APP_GUARD,
+    //   useClass: RoleGuard,
+    // },
+    
   ],
   controllers: [AuthController],
 })

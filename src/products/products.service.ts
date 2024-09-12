@@ -4,10 +4,10 @@ import { DatabaseService } from 'src/database/database.service';
 
 @Injectable()
 export class ProductsService {
-
   constructor(private readonly dbService: DatabaseService) {}
 
   async create(createProductDto: Prisma.ProductsCreateInput) {
+
     return await this.dbService.products.create({ data: createProductDto });
   }
 

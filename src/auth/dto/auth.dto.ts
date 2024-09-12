@@ -10,3 +10,8 @@ export class AuthDto {
   @IsString()
   password: string;
 }
+
+export class FindUserDto {
+  id?: number
+  email?: string
+}

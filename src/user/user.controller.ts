@@ -3,6 +3,7 @@ import { UserService } from './user.service';
 import { Prisma } from '@prisma/client';
 import { Role } from 'src/common/enums/role.enum';
 import { Roles } from 'src/common/decorators/roles.decorators';
+import { Public } from 'src/common/decorators/public.decorator';
 
 
 @Controller('user')
@@ -10,6 +11,7 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
   
   @Roles(Role.ADMIN)
+  @Public()
   @Get()
   findAll() {
     return this.userService.findAll();
@@ -17,7 +19,7 @@ export class UserController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.userService.findOne(+id);
+    return this.userService.findOne({id:+id});
   }
 
   @Patch(':id')
