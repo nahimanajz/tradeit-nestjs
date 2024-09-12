@@ -1,12 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { DatabaseService } from 'src/database/database.service';
+import { CreateProductDto } from './dto/create-product.dto';
 
 @Injectable()
 export class ProductsService {
   constructor(private readonly dbService: DatabaseService) {}
 
-  async create(createProductDto: Prisma.ProductsCreateInput) {
+  async create(createProductDto: CreateProductDto) {
 
     return await this.dbService.products.create({ data: createProductDto });
   }

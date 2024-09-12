@@ -1,14 +1,16 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { OrdersService } from './orders.service';
 import { Prisma } from '@prisma/client';
+import { ApiTags } from '@nestjs/swagger';
 
-
+@ApiTags("Orders")
 @Controller('orders')
 export class OrdersController {
   constructor(private readonly ordersService: OrdersService) {}
 
   @Post()
   create(@Body() createOrderDto: Prisma.OrdersCreateInput) {
+
 
     return this.ordersService.create(createOrderDto);
   }

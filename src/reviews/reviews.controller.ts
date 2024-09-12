@@ -1,7 +1,9 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { ReviewsService } from './reviews.service';
 import { Prisma } from '@prisma/client';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags("Reviews")
 @Controller('reviews')
 export class ReviewsController {
   constructor(private readonly reviewsService: ReviewsService) {}

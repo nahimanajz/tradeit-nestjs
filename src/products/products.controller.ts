@@ -1,12 +1,21 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Req } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { ProductsService } from './products.service';
-import { Prisma } from '@prisma/client';
 import { Public } from 'src/common/decorators/public.decorator';
 import { Role } from 'src/common/enums/role.enum';
 import { Roles } from 'src/common/decorators/roles.decorators';
+import { ApiTags } from '@nestjs/swagger';
+import { CreateProductDto } from './dto/create-product.dto';
+import { UpdatProductDto } from './dto/update-product.dto';
 
-
-
+@ApiTags('Products')
 @Controller('products')
 @Public()
 @Roles(Role.ADMIN)
@@ -14,14 +23,11 @@ export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
   @Post()
-  async create(@Body() createProductDto: Prisma.ProductsCreateInput, @Req() req) {
+  async create(@Body() createProductDto: CreateProductDto) {
     try {
-   
-     return await this.productsService.create(createProductDto);
-      
+      return await this.productsService.create(createProductDto);
     } catch (error) {
-      console.log(error)
-      return error
+      return error;
     }
   }
 
@@ -36,7 +42,10 @@ export class ProductsController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateProductDto: Prisma.ProductsCreateInput) {
+  update(
+    @Param('id') id: string,
+    @Body() updateProductDto: UpdatProductDto,
+  ) {
     return this.productsService.update(+id, updateProductDto);
   }
 

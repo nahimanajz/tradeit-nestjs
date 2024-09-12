@@ -3,7 +3,9 @@ import { AuthService } from './auth.service';
 import { AuthDto } from './dto/auth.dto';
 import { Prisma } from '@prisma/client';
 import { Public } from 'src/common/decorators/public.decorator';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Authorizations')
 @Controller('auth')
 @Public()
 export class AuthController {
