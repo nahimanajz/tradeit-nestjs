@@ -1,9 +1,9 @@
 import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { AuthDto } from './dto/auth.dto';
+import { AuthDto, SignupDto } from './dto/auth.dto';
 import { Prisma } from '@prisma/client';
 import { Public } from 'src/common/decorators/public.decorator';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Authorizations')
 @Controller('auth')
@@ -21,7 +21,9 @@ export class AuthController {
 
   @HttpCode(HttpStatus.OK)
   @Post('signup')
-  async signUp(@Body() payload: Prisma.UserCreateInput) {
+  @ApiResponse({})
+  
+  async signUp(@Body() payload: SignupDto) {
     return this.auth.signup(payload);
   }
 }

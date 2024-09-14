@@ -1,13 +1,14 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { OrdersOnProductsService } from './orders-on-produts.service';
 import { Prisma } from '@prisma/client';
+import { OrderProductDto } from './dto/create-order-product.dto';
 
 @Controller('orders-on-produts')
 export class OrdersOnProdutsController {
   constructor(private readonly ordersOnProdutsService: OrdersOnProductsService) {}
 
   @Post()
-  create(@Body() createOrdersOnProdutDto: Prisma.OrdersOnProductsCreateInput) {
+  create(@Body() createOrdersOnProdutDto: OrderProductDto) {
     return this.ordersOnProdutsService.create(createOrdersOnProdutDto);
   }
 

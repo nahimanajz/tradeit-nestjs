@@ -45,8 +45,8 @@ model Products {
 model Orders {
     id       Int                @id @default(autoincrement())
     status   Status
-    user     User               @relation(fields: [userId], references: [id])
     userId   Int
+    user     User               @relation(fields: [userId], references: [id])
     products OrdersOnProducts[]
 }
 
@@ -74,6 +74,6 @@ model Reviews {
     id        Int      @id @default(autoincrement())
     text      String
     rating    Int
-    product   Products @relation(references: [id], fields: [productId])
     productId Int
+    product   Products @relation(references: [id], fields: [productId])
 }

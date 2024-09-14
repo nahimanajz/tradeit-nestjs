@@ -8,10 +8,11 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe())
 
   const config = new DocumentBuilder()
-  .setTitle("Trade it documentation")
+  .setTitle("Trade it E-commerce ")
   .setDescription("This is documentation for tradeIT E-commerce")
   .setVersion("1.0.0")
   .addTag("Products")
+  .addBearerAuth()
   .build();
 
   const document = SwaggerModule.createDocument(app, config);

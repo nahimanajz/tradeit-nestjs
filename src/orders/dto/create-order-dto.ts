@@ -1,20 +1,16 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { OrderStatus } from "src/common/enums/status.enum";
+import { ApiProperty } from '@nestjs/swagger';
+import { OrderStatus } from 'src/common/enums/status.enum';
 
 export class OrderDto {
-    @ApiProperty()
-    userId: number;
+  @ApiProperty()
+  userId: number;
 
-    @ApiProperty()
-    productId: number;
+  @ApiProperty()
+  productId: number;
 
-    @ApiProperty({default:"Pending"})
-  status: string; //OrderStatus |
+  @ApiProperty({ default: 'Pending' })
+  status: OrderStatus 
 
-    @ApiProperty()
-    quantity: number;
-
-
-
-
+  @ApiProperty()
+  quantity: number;
 }
